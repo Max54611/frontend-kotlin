@@ -124,7 +124,10 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infla
     }
 
     override fun onCardSwiped(direction: Direction?) {
-
+        if(direction == Direction.Right){
+            val product = adapter.list[manager.topPosition - 1]
+            homeViewModel.saveProduct(product,requireContext())
+        }
     }
 
     override fun onCardRewound() {

@@ -1,8 +1,13 @@
 package com.morimagno.grupo3a.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.room.Room
+import com.morimagno.grupo3a.data.database.ProductDatabase
+import com.morimagno.grupo3a.data.database.entities.MyProductEntity
 import com.morimagno.grupo3a.data.model.ProductResponse
 import com.morimagno.grupo3a.data.network.ProductApi
 import kotlinx.coroutines.CoroutineScope
@@ -18,6 +23,8 @@ class HomeViewModel:ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
+
+    private val PRODUCT_DATABASE_NAME = "product_database"
 
     init {
         getAllProducts()
@@ -42,6 +49,28 @@ class HomeViewModel:ViewModel() {
             _isLoading.postValue(false)
             _productList.postValue(productList)
         }
+    }
+
+    fun saveProduct(productResponse: ProductResponse,context: Context){
+        val myProduct = MyProductEntity(
+            product_name = productResponse.productName,
+            image = productResponse.getProductImage(),
+            description = productResponse.description,
+            product_id = productResponse.productId,
+            marked_price = "S/${productResponse.markedPrice.toString()}0"
+        )
+
+        viewModelScope.launch {
+            getRoomDatabase(context).getProductDao().insert(myProduct)
+        }
+    }
+
+    private fun getRoomDatabase(context: Context): ProductDatabase{
+        return Room.databaseBuilder(
+            context,
+            ProductDatabase::class.java,
+            PRODUCT_DATABASE_NAME
+        ).build()
     }
 
     private fun getRetroFit(): Retrofit {

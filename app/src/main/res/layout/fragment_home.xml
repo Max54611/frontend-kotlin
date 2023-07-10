@@ -103,7 +103,7 @@
         app:layout_constraintStart_toEndOf="@+id/floatingActionButton"
         app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
         app:rippleColor="#226FE2B3"
-        app:srcCompat="@drawable/like_green"
+        app:srcCompat="@drawable/add_cart"
         app:tint="@null"
         tools:visibility="visible" />
 

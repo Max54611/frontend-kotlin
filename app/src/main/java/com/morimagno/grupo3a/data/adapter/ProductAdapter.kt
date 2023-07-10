@@ -36,6 +36,7 @@ class ProductAdapter(
                     callback.onClickProductInformation(producto)
                 }
                 tvName.text = producto.productName
+                tvPrice.text = "S/${producto.markedPrice.toString()}0"
                 Glide
                     .with(itemView)
                     .load(producto.getProductImage())

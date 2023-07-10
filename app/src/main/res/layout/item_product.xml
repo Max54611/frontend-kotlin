@@ -73,11 +73,12 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#CCFBFBFB"
-                android:text="Frutos Secos" />
+                android:text="precio" />
             </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
