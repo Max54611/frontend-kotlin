@@ -23,7 +23,7 @@
             android:gravity="bottom">
 
             <TextView
-                android:id="@+id/tvIndex"
+                android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/red"
@@ -42,7 +42,7 @@
                 tools:text="product_name" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvIndex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/teal_200"
